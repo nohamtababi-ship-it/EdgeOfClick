@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc0dbfho1208s"]
+
+[ext_resource type="Script" uid="uid://bli2d6dw15rfl" path="res://Diablotin/diablotin.gd" id="1_lb45d"]
+[ext_resource type="Texture2D" uid="uid://dna3erjtqp0sm" path="res://images/diablotin1.png" id="2_hcpht"]
+[ext_resource type="Script" uid="uid://c24fmijgii8ox" path="res://ExplosionEffect.gd" id="3_viegd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lb45d"]
+radius = 14.0
+
+[sub_resource type="Curve" id="Curve_viegd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24498, 0.74488), 0.0, 0.0, 0, 0, Vector2(0.461847, 0.478669), 0.0, 0.0, 0, 0, Vector2(0.654618, 0.289389), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_kgj1l"]
+curve = SubResource("Curve_viegd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lk0q8"]
+particle_flag_disable_z = true
+spread = 173.201
+initial_velocity_min = 66.37
+initial_velocity_max = 240.93
+gravity = Vector3(0, 98, 0)
+scale_min = 2.4
+scale_max = 2.4
+scale_curve = SubResource("CurveTexture_kgj1l")
+
+[node name="Diablotin" type="CharacterBody2D"]
+script = ExtResource("1_lb45d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_hcpht")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lb45d")
+metadata/_edit_group_ = true
+
+[node name="Explosion effect" type="GPUParticles2D" parent="."]
+modulate = Color(0.403922, 0.176471, 0.14902, 1)
+amount = 100
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_lk0q8")
+script = ExtResource("3_viegd")
+metadata/_edit_group_ = true

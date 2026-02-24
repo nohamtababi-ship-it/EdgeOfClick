@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxmj0p8ei5esk"]
+
+[ext_resource type="Texture2D" uid="uid://cwaq2d5poblfe" path="res://images/bigbosse_move .png" id="1_3g4if"]
+[ext_resource type="Script" uid="uid://bt41miq55yns5" path="res://BigBoss/big_boss.gd" id="1_b8pou"]
+[ext_resource type="Texture2D" uid="uid://cdkj0p8pk44eu" path="res://images/bigbosse_move1.png" id="2_plwjj"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="4_b8pou"]
+[ext_resource type="AudioStream" uid="uid://cjy2eclv8xyot" path="res://sounds/plankton-augh.mp3" id="5_pb00p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8pou"]
+size = Vector2(24.3333, 31.6667)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olecx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3g4if")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3g4if")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_plwjj")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 2.0
+}]
+
+[node name="BigBoss" type="CharacterBody2D" groups=["Ennemi", "corpsAcorps"]]
+scale = Vector2(0.809133, 0.862854)
+script = ExtResource("1_b8pou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0.499998)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_b8pou")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Ennemi", "corpsAcorps"]]
+sprite_frames = SubResource("SpriteFrames_olecx")
+animation = &"walking"
+
+[node name="Health" parent="." instance=ExtResource("4_b8pou")]
+
+[node name="augh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_pb00p")

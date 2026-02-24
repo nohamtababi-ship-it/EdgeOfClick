@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://b4h3bviws7n7c"]
+
+[ext_resource type="Texture2D" uid="uid://65f7sf8egewd" path="res://images/batteur-Photoroom.png" id="1_72lp1"]
+[ext_resource type="Script" uid="uid://c0v7nsppbet7i" path="res://Batteur/batteur.gd" id="1_exwfo"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="3_exwfo"]
+[ext_resource type="AudioStream" uid="uid://h5r8qddn33kp" path="res://sounds/sting-rimshot-drum-roll-smooth-100369.mp3" id="4_n0ks2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_72lp1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_her4h"]
+atlas = ExtResource("1_72lp1")
+region = Rect2(230, 0, 230, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c32nh"]
+atlas = ExtResource("1_72lp1")
+region = Rect2(440, 440, 220, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icpwy"]
+atlas = ExtResource("1_72lp1")
+region = Rect2(230, 645, 230, 215)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fthqn"]
+atlas = ExtResource("1_72lp1")
+region = Rect2(230, 0, 230, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x10ev"]
+atlas = ExtResource("1_72lp1")
+region = Rect2(420, 215, 210, 215)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbr7l"]
+atlas = ExtResource("1_72lp1")
+region = Rect2(420, 0, 210, 215)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btwf6"]
+atlas = ExtResource("1_72lp1")
+region = Rect2(630, 215, 210, 215)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2s4ef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_her4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c32nh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icpwy")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fthqn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x10ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbr7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btwf6")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 4.0
+}]
+
+[node name="Batteur" type="CharacterBody2D" groups=["Allié", "corpsAcorps"]]
+script = ExtResource("1_exwfo")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_72lp1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Allié", "corpsAcorps"]]
+position = Vector2(-1, -2)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_2s4ef")
+animation = &"attacking"
+
+[node name="Health" parent="." instance=ExtResource("3_exwfo")]
+
+[node name="batteursound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_n0ks2")
+volume_db = 2.786

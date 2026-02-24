@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://bsuyf8106p128"]
+
+[ext_resource type="Script" uid="uid://cvcx6806sd4in" path="res://erick/erick.gd" id="1_isnig"]
+[ext_resource type="Texture2D" uid="uid://dhtbn58ae5inp" path="res://images/erick.png" id="1_j6trh"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="3_v8xrx"]
+[ext_resource type="AudioStream" uid="uid://f7yfwfgoc84g" path="res://sounds/zapsplat_foley_wood_stick_poke_into_sludge_wet_mud_003_48174.mp3" id="4_sjnif"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0ool"]
+atlas = ExtResource("1_j6trh")
+region = Rect2(0, 960, 257, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i87rv"]
+atlas = ExtResource("1_j6trh")
+region = Rect2(639, 960, 213, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnhss"]
+atlas = ExtResource("1_j6trh")
+region = Rect2(852, 960, 213, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jbd5"]
+atlas = ExtResource("1_j6trh")
+region = Rect2(1065, 960, 213, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isnig"]
+atlas = ExtResource("1_j6trh")
+region = Rect2(0, 0, 213, 426)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8xrx"]
+atlas = ExtResource("1_j6trh")
+region = Rect2(195, 0, 176, 387)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjnif"]
+atlas = ExtResource("1_j6trh")
+region = Rect2(945, 0, 131, 426)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0ool"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0ool")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i87rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnhss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jbd5")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isnig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8xrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjnif")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i87rv"]
+radius = 8.36159
+height = 16.7232
+
+[node name="Erick" type="CharacterBody2D" groups=["Allié", "corpsAcorps"]]
+position = Vector2(-15, 9)
+scale = Vector2(0.314641, 0.354596)
+script = ExtResource("1_isnig")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l0ool")
+animation = &"attacking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(-8.99846, -16.8628)
+shape = SubResource("CapsuleShape2D_i87rv")
+
+[node name="Health" parent="." instance=ExtResource("3_v8xrx")]
+
+[node name="mud" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sjnif")
+volume_db = 24.0

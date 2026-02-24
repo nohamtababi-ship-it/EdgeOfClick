@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1tgfjrogjplw"]
+
+[ext_resource type="Script" uid="uid://bfcqpj0qh1ckv" path="res://Musicien/musicien.gd" id="1_cacq4"]
+[ext_resource type="Texture2D" uid="uid://b2pqwlg5yjid2" path="res://images/flutefinal-Photoroom.png" id="2_m1q03"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="3_cacq4"]
+[ext_resource type="AudioStream" uid="uid://dp1j8mwhyir4h" path="res://sounds/mixkit-uplifting-flute-notification-2317.mp3" id="4_btnig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cacq4"]
+atlas = ExtResource("2_m1q03")
+region = Rect2(0, 422, 160, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btnig"]
+atlas = ExtResource("2_m1q03")
+region = Rect2(160, 422, 160, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev1tc"]
+atlas = ExtResource("2_m1q03")
+region = Rect2(320, 422, 160, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpdcl"]
+atlas = ExtResource("2_m1q03")
+region = Rect2(0, 211, 160, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwsvf"]
+atlas = ExtResource("2_m1q03")
+region = Rect2(0, 0, 160, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kqpt"]
+atlas = ExtResource("2_m1q03")
+region = Rect2(160, 0, 160, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d10c4"]
+atlas = ExtResource("2_m1q03")
+region = Rect2(480, 0, 160, 211)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h4sk2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cacq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btnig")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_ev1tc")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpdcl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwsvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kqpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d10c4")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nty2o"]
+radius = 26.0
+height = 92.0
+
+[node name="Musicien" type="CharacterBody2D" groups=["Allié", "allié", "distance"]]
+position = Vector2(-2, 0)
+script = ExtResource("1_cacq4")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Allié", "distance"]]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_h4sk2")
+animation = &"attacking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_nty2o")
+
+[node name="Health" parent="." instance=ExtResource("3_cacq4")]
+
+[node name="musiciensound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_btnig")

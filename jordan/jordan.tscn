@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://chcmxqcl0dp2n"]
+
+[ext_resource type="Script" uid="uid://s2w6jeilo3mc" path="res://jordan/jordan.gd" id="1_udjda"]
+[ext_resource type="Texture2D" uid="uid://hvcvb7mno0py" path="res://images/jordan.png" id="2_qqbfi"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="3_1un2i"]
+[ext_resource type="AudioStream" uid="uid://d0bvbcokb20mo" path="res://sounds/dropping-single-coin-on-floor-2-38987.mp3" id="4_1un2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na6b1"]
+atlas = ExtResource("2_qqbfi")
+region = Rect2(10, 682, 507, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypl3x"]
+atlas = ExtResource("2_qqbfi")
+region = Rect2(517, 682, 507, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2dgn"]
+atlas = ExtResource("2_qqbfi")
+region = Rect2(10, 0, 209, 337)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rckl0"]
+atlas = ExtResource("2_qqbfi")
+region = Rect2(190, 0, 180, 337)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w27c"]
+atlas = ExtResource("2_qqbfi")
+region = Rect2(370, 0, 180, 337)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fve4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na6b1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypl3x")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2dgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rckl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w27c")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqbfi"]
+radius = 71.0
+height = 304.0
+
+[node name="Jordan" type="CharacterBody2D" groups=["Allié", "corpsAcorps"]]
+position = Vector2(-9, -14)
+scale = Vector2(0.313954, 0.344171)
+script = ExtResource("1_udjda")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fve4v")
+animation = &"attacking"
+
+[node name="Health" parent="." instance=ExtResource("3_1un2i")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18, 29)
+shape = SubResource("CapsuleShape2D_qqbfi")
+
+[node name="coinssound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1un2i")
+volume_db = 24.0

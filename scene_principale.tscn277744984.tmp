@@ -1,0 +1,152 @@
+[gd_scene load_steps=18 format=3 uid="uid://b03tu0a85bydu"]
+
+[ext_resource type="Texture2D" uid="uid://y7wqo7w4jmee" path="res://images/backgroud final.png" id="1_hmrk6"]
+[ext_resource type="Script" uid="uid://cjwcuqnmjfkso" path="res://Main.gd" id="1_p4fq2"]
+[ext_resource type="PackedScene" uid="uid://dbhjvdjkbrguw" path="res://Cible/Cible.tscn" id="2_p4fq2"]
+[ext_resource type="PackedScene" uid="uid://b4h3bviws7n7c" path="res://Batteur/Batteur.tscn" id="3_0wmpy"]
+[ext_resource type="PackedScene" uid="uid://g2d5r26nynl4" path="res://Base alliée/base_alliée.tscn" id="4_7n3ce"]
+[ext_resource type="PackedScene" uid="uid://d1tgfjrogjplw" path="res://Musicien/Musicien.tscn" id="4_ks6ia"]
+[ext_resource type="PackedScene" uid="uid://c4iy7qa7p20ga" path="res://Base ennemie/base_ennemie.tscn" id="5_64ilw"]
+[ext_resource type="PackedScene" uid="uid://bbkf0j2o4c844" path="res://Guitariste/Guitariste.tscn" id="5_c3adj"]
+[ext_resource type="PackedScene" uid="uid://8438nu7xqcgr" path="res://spawner/spawner.tscn" id="6_p3iq2"]
+[ext_resource type="Texture2D" uid="uid://cxiw75ce7lc5s" path="res://images/batteur-Photoroom_Solo-Photoroom.png" id="7_0wmpy"]
+[ext_resource type="Texture2D" uid="uid://m4053y03gyfs" path="res://images/sprite_clown-removebg-preview_solo-Photoroom.png" id="8_elwfw"]
+[ext_resource type="Texture2D" uid="uid://dl1x0lbcv6ujx" path="res://images/guitar_marche_solo-Photoroom.png" id="9_ks6ia"]
+[ext_resource type="PackedScene" uid="uid://dkrri3f8xy67b" path="res://gameOver/game_over_screen.tscn" id="13_c3adj"]
+[ext_resource type="PackedScene" uid="uid://di3sj5mdf5n7v" path="res://victoire/victoire_screen.tscn" id="14_wygd8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmrk6"]
+size = Vector2(1019, 104)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hmrk6"]
+a = Vector2(2, 497)
+b = Vector2(-2, -517)
+
+[sub_resource type="GDScript" id="GDScript_64ilw"]
+script/source = "extends Label # Ce script est SUR le Label, donc \"text\" marche direct
+
+var score = 0
+
+func _ready():
+	# Initialisation
+	text = \"Clicks: 0\"
+
+# Fonction qui fait apparaître une cible
+func spawn_cible():
+	var nouvelle_cible = load(\"res://cible.tscn\").instantiate()
+	
+	# ATTENTION : Si tu ajoutes la cible comme enfant du Label, ça peut être bizarre visuellement.
+	# Il vaut mieux l'ajouter à la racine de la scène ou un dossier \"Ennemis\".
+	# get_parent().add_child(nouvelle_cible) serait plus propre si le script est sur le Label.
+	add_child(nouvelle_cible) 
+	
+	nouvelle_cible.clicked.connect(_on_cible_clicked)
+
+# La fonction qui reçoit le signal
+func _on_cible_clicked():
+	score += 1
+	text = \"Clicks: \" + str(score) # On modifie directement NOTRE texte
+	print(\"Score augmenté !\")
+"
+
+[node name="Scene principale" type="Node2D"]
+script = ExtResource("1_p4fq2")
+target_scene = ExtResource("2_p4fq2")
+ally_scene1 = ExtResource("3_0wmpy")
+ally_scene2 = ExtResource("4_ks6ia")
+ally_scene3 = ExtResource("5_c3adj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1025.0
+offset_bottom = 1025.0
+mouse_filter = 2
+texture = ExtResource("1_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(491, 361)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(20, 256)
+shape = SubResource("RectangleShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(19, 35)
+shape = SubResource("RectangleShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="Left Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+position = Vector2(1, 525)
+shape = SubResource("SegmentShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="Right Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+position = Vector2(1025, 520)
+shape = SubResource("SegmentShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="BaseAlliée" parent="." instance=ExtResource("4_7n3ce")]
+position = Vector2(54, 501)
+metadata/_edit_lock_ = true
+
+[node name="BaseEnnemie" parent="." instance=ExtResource("5_64ilw")]
+position = Vector2(973, 505)
+metadata/_edit_lock_ = true
+
+[node name="Spawner" parent="." instance=ExtResource("6_p3iq2")]
+
+[node name="Tambour" type="Button" parent="."]
+offset_left = 98.0
+offset_top = 721.0
+offset_right = 229.0
+offset_bottom = 842.0
+theme_override_font_sizes/font_size = 20
+text = "Cost :
+ 4"
+icon = ExtResource("7_0wmpy")
+
+[node name="Flute" type="Button" parent="."]
+offset_left = 437.0
+offset_top = 725.0
+offset_right = 568.0
+offset_bottom = 844.0
+theme_override_font_sizes/font_size = 20
+text = "Cost :
+8"
+icon = ExtResource("8_elwfw")
+
+[node name="Guitard" type="Button" parent="."]
+texture_filter = 1
+offset_left = 759.0
+offset_top = 731.0
+offset_right = 896.0
+offset_bottom = 841.0
+text = "Cost :
+12"
+icon = ExtResource("9_ks6ia")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Clicks" type="Label" parent="CanvasLayer2"]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 41.0
+offset_bottom = 28.0
+script = SubResource("GDScript_64ilw")
+metadata/_edit_group_ = true
+
+[node name="GameOverScreen" parent="." instance=ExtResource("13_c3adj")]
+
+[node name="victoire_screen" parent="." instance=ExtResource("14_wygd8")]
+
+[connection signal="pressed" from="Tambour" to="." method="_on_tambour_pressed"]
+[connection signal="pressed" from="Flute" to="." method="_on_flute_pressed"]
+[connection signal="pressed" from="Guitard" to="." method="_on_guitard_pressed"]

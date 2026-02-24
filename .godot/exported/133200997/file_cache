@@ -1,0 +1,21 @@
+res://Base alliée/base_alliée.tscn::ac36290d4fc1ed1634396239b7287a97::1769246122::res://.godot/exported/133200997/export-f6e9bc22fa42b33ae5b3b8fe4f15b8c6-base_alliée.scn
+res://Base ennemie/base_ennemie.tscn::60c009d3bf3fd1a092a1755f3fbb4727::1769246124::res://.godot/exported/133200997/export-625315fd1ad56f19d2b208ce762fa6eb-base_ennemie.scn
+res://Batteur/Batteur.tscn::1b64f6f35e039c54926178f28479ab00::1769246126::res://.godot/exported/133200997/export-1b7e57b8ce8fb877a6c58b9f5ef6370e-Batteur.scn
+res://BigBoss/BigBoss.tscn::90f52c814dc746265dbf922b2bf9144a::1769246123::res://.godot/exported/133200997/export-d59f1ffb10a1deb49be4c457d8852c17-BigBoss.scn
+res://Cible/Cible.tscn::88d371914e19803ba09869644b924227::1769246126::res://.godot/exported/133200997/export-eb9b70cb5b94a5a18096dc37960744d3-Cible.scn
+res://Clown/Clown_Ennemy.tscn::348b317f2d9d94fbfb16ccc916e2c775::1769246125::res://.godot/exported/133200997/export-d54dd90ab47e09008ee53d5ce9985a78-Clown_Ennemy.scn
+res://Cracheur de feu/CracheurFeu.tscn::af02ef3b5e7b1bac3d045e83311e1885::1769246124::res://.godot/exported/133200997/export-a695783924e08bf737e2aeed09e2d471-CracheurFeu.scn
+res://Cycliste/Cycliste.tscn::452f3e6fe55e289b36dcc7c99b17e4e0::1769246125::res://.godot/exported/133200997/export-9bdbdf12250d1666107ce66a1f5f1f29-Cycliste.scn
+res://Diablotin/diablotin.tscn::0a7edb725ff7b0f3e86fd74e2312af17::1769246125::res://.godot/exported/133200997/export-176a7e14e65c2145e2857417a91bfe42-diablotin.scn
+res://gameOver/game_over_screen.tscn::efd9048d8886271b27a96e87a21aa4ba::1769246124::res://.godot/exported/133200997/export-f425ce0f6ef75ec295c412498c825c78-game_over_screen.scn
+res://Guitariste/Guitariste.tscn::fd97009565ee1d0cc7ae338e5456d01d::1769246125::res://.godot/exported/133200997/export-0122e40f8a0728e222b856fbabb39521-Guitariste.scn
+res://Musicien/Musicien.tscn::59b94ff1fa41f1f784cd90767c6b83a1::1769246126::res://.godot/exported/133200997/export-a49f1406310505343aa4fc507bd579c3-Musicien.scn
+res://spawner/spawner.tscn::eb2aaf35a7e99c3457a3d79c290915d4::1769246122::res://.godot/exported/133200997/export-7b8876714297b411c72edb23b35b0ea3-spawner.scn
+res://victoire/victoire_screen.tscn::1fd9aea4e86a6bfca4816ae0b23da776::1769246123::res://.godot/exported/133200997/export-47a31b97ce3ee89365f3753df105d9f6-victoire_screen.scn
+res://health.tscn::fac46dc48b8abaf94ce69cb2ce487eee::1769212210::res://.godot/exported/133200997/export-ac16c50b72c252494da7c5491cc823fd-health.scn
+res://menu_principal.tscn::3107022d7393fe1be266a3cab61ab7d8::1769246124::res://.godot/exported/133200997/export-ee49c99aa97246bbd0d359855b66cb27-menu_principal.scn
+res://scene_principale.tscn::afb2613573ef93cc8eb04b6644b00fb8::1769247320::res://.godot/exported/133200997/export-076cb6605066fd1fb90d479d5c68ba47-scene_principale.scn
+res://jordan/jordan.tscn::1e7d6cf8e87dee70402f5163e699d117::1769247321::res://.godot/exported/133200997/export-d562e28c8d38a7122560837ad3660299-jordan.scn
+res://Magasin/magasin.tscn::c79c1fb8081669d63f1670b9ec4a49ab::1769229224::res://.godot/exported/133200997/export-a521f5cf71c25851798f82e8f9611f9b-magasin.scn
+res://erick/erick.tscn::d817baf59246f350ac01715d5f67348c::1769247338::res://.godot/exported/133200997/export-1a6874fcb82f2d82d3709cb2b63d2da3-erick.scn
+res://mohammed/mohammed.tscn::32e76b654e612e8f74daa79282c45079::1769247321::res://.godot/exported/133200997/export-0b4f5d71f5adc2349df26a3b3c814999-mohammed.scn

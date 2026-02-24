@@ -1,0 +1,28 @@
+res://Musicien/Musicien.tscn
+res://spawner/spawner.gd
+res://Diablotin/diablotin.tscn
+res://Clown/clown_ennemy.gd
+res://Cracheur de feu/cracheur_feu.gd
+res://Cycliste/cycliste.gd
+res://Diablotin/diablotin.gd
+res://jordan/jordan.tscn
+res://jordan/jordan.gd
+res://sounds/Main.gd
+res://scene_principale.tscn
+res://Base alliée/base_alliée.tscn
+res://spawner/spawner.tscn
+res://BigBoss/BigBoss.tscn
+res://victoire/victoire_screen.tscn
+res://Base ennemie/base_ennemie.tscn
+res://gameOver/game_over_screen.tscn
+res://Cracheur de feu/CracheurFeu.tscn
+res://menu_principal.tscn
+res://Clown/Clown_Ennemy.tscn
+res://Cycliste/Cycliste.tscn
+res://Guitariste/Guitariste.tscn
+res://Batteur/Batteur.tscn
+res://Cible/Cible.tscn
+res://mohammed/mohammed.tscn
+res://mohammed.gd
+res://erick/erick.tscn
+res://erick/erick.gd

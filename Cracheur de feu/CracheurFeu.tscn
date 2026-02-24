@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://buy76bdeeeubx"]
+
+[ext_resource type="Script" uid="uid://bes1tnjarhclp" path="res://Cracheur de feu/cracheur_feu.gd" id="1_ks51u"]
+[ext_resource type="Texture2D" uid="uid://b4gkcwi32ib0s" path="res://images/feu_marche1.png" id="2_ks51u"]
+[ext_resource type="Texture2D" uid="uid://dmi8s7yfsyleh" path="res://images/feu_attaque1.png" id="3_jbkbg"]
+[ext_resource type="Texture2D" uid="uid://r26by6ylxw3f" path="res://images/feu_marche2.png" id="4_2on2f"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="5_ks51u"]
+[ext_resource type="AudioStream" uid="uid://c0exyowbtn73v" path="res://sounds/mixkit-short-fire-whoosh-1345.mp3" id="6_jbkbg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y5iph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ks51u")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_jbkbg")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ks51u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ks51u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2on2f")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvier"]
+radius = 6.5
+height = 22.0
+
+[node name="CracheurFeu" type="CharacterBody2D" groups=["Ennemi", "distance"]]
+script = ExtResource("1_ks51u")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_y5iph")
+animation = &"attacking"
+frame_progress = 0.685679
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 7)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_fvier")
+
+[node name="Health" parent="." instance=ExtResource("5_ks51u")]
+
+[node name="fire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jbkbg")
+volume_db = 5.571

@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://3lu15edxkdc"]
+
+[ext_resource type="Script" uid="uid://bgeo3bbewrcgn" path="res://Clown/clown_ennemy.gd" id="1_uarkh"]
+[ext_resource type="Texture2D" uid="uid://ddqkebmnegp27" path="res://images/clown_attaque1.png" id="2_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://bxofjn57cc5f2" path="res://images/clown_attaque2.png" id="3_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://bwsacitqx7bgk" path="res://images/clown_attaque3.png" id="4_dw050"]
+[ext_resource type="Texture2D" uid="uid://np7r1qfw4l10" path="res://images/clown_marche1.png" id="5_b26j0"]
+[ext_resource type="Texture2D" uid="uid://cgvud7m5ell2a" path="res://images/clown_marche2.png" id="6_n7ghd"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="7_41ykh"]
+[ext_resource type="AudioStream" uid="uid://cubdxtn3b8gm" path="res://sounds/clown-horn-honks.mp3" id="8_lq6ux"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nvl01"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_2hs0m")
+}, {
+"duration": 1.8,
+"texture": ExtResource("3_1jxqw")
+}, {
+"duration": 1.8,
+"texture": ExtResource("4_dw050")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b26j0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n7ghd")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivps1"]
+radius = 6.0
+height = 24.0
+
+[node name="Clown" type="CharacterBody2D" groups=["Ennemi", "corpsAcorps"]]
+position = Vector2(1, -1)
+script = ExtResource("1_uarkh")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_nvl01")
+animation = &"attacking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 8)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_ivps1")
+
+[node name="Health" parent="." instance=ExtResource("7_41ykh")]
+
+[node name="clownsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_lq6ux")
+volume_db = 1.857

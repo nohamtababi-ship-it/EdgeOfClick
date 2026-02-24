@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://bbkf0j2o4c844"]
+
+[ext_resource type="Script" uid="uid://brykk26g86w61" path="res://Guitariste/guitariste.gd" id="1_bcceu"]
+[ext_resource type="Texture2D" uid="uid://ddggng3t1oitn" path="res://images/guitar_attque1.png" id="2_3tat6"]
+[ext_resource type="Texture2D" uid="uid://b206eqa2sfoem" path="res://images/guitar_attque2.png" id="3_siysn"]
+[ext_resource type="Texture2D" uid="uid://b8indfvad56gb" path="res://images/guitar_marche.png" id="4_jn3f6"]
+[ext_resource type="Texture2D" uid="uid://skdjvnkksux5" path="res://images/guitar_marche2.png" id="5_q38b6"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="6_bcceu"]
+[ext_resource type="AudioStream" uid="uid://cb7037tustted" path="res://sounds/2rebg6mvh34-guitar-sfx-2.mp3" id="7_cfb0a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t72u8"]
+atlas = ExtResource("4_jn3f6")
+region = Rect2(10, 48, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfumy"]
+atlas = ExtResource("4_jn3f6")
+region = Rect2(41, 0, 41, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th0xu"]
+atlas = ExtResource("4_jn3f6")
+region = Rect2(0, 48, 51, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8m45"]
+atlas = ExtResource("5_q38b6")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aw8na"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3tat6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_siysn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_siysn")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t72u8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfumy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th0xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8m45")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jl5li"]
+radius = 12.0
+height = 46.0
+
+[node name="Guitariste" type="CharacterBody2D" groups=["Allié", "corpsAcorps"]]
+script = ExtResource("1_bcceu")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aw8na")
+animation = &"attacking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_jl5li")
+
+[node name="Health" parent="." instance=ExtResource("6_bcceu")]
+
+[node name="guitaristesound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_cfb0a")
+volume_db = 9.286

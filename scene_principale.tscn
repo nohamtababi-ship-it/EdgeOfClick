@@ -1,0 +1,227 @@
+[gd_scene load_steps=28 format=3 uid="uid://b03tu0a85bydu"]
+
+[ext_resource type="Texture2D" uid="uid://y7wqo7w4jmee" path="res://images/backgroud final.png" id="1_hmrk6"]
+[ext_resource type="Script" uid="uid://cjwcuqnmjfkso" path="res://sounds/Main.gd" id="1_p4fq2"]
+[ext_resource type="PackedScene" uid="uid://dbhjvdjkbrguw" path="res://Cible/Cible.tscn" id="2_p4fq2"]
+[ext_resource type="PackedScene" uid="uid://b4h3bviws7n7c" path="res://Batteur/Batteur.tscn" id="3_0wmpy"]
+[ext_resource type="PackedScene" uid="uid://g2d5r26nynl4" path="res://Base alliée/base_alliée.tscn" id="4_7n3ce"]
+[ext_resource type="PackedScene" uid="uid://d1tgfjrogjplw" path="res://Musicien/Musicien.tscn" id="4_ks6ia"]
+[ext_resource type="PackedScene" uid="uid://c4iy7qa7p20ga" path="res://Base ennemie/base_ennemie.tscn" id="5_64ilw"]
+[ext_resource type="PackedScene" uid="uid://bbkf0j2o4c844" path="res://Guitariste/Guitariste.tscn" id="5_c3adj"]
+[ext_resource type="PackedScene" uid="uid://chcmxqcl0dp2n" path="res://jordan/jordan.tscn" id="6_gfu4q"]
+[ext_resource type="PackedScene" uid="uid://8438nu7xqcgr" path="res://spawner/spawner.tscn" id="6_p3iq2"]
+[ext_resource type="Texture2D" uid="uid://cxiw75ce7lc5s" path="res://images/batteur-Photoroom_Solo-Photoroom.png" id="7_0wmpy"]
+[ext_resource type="PackedScene" uid="uid://beaf43bmruasp" path="res://mohammed/mohammed.tscn" id="7_oosg4"]
+[ext_resource type="PackedScene" uid="uid://bsuyf8106p128" path="res://erick/erick.tscn" id="8_a4f6t"]
+[ext_resource type="Texture2D" uid="uid://m4053y03gyfs" path="res://images/sprite_clown-removebg-preview_solo-Photoroom.png" id="8_elwfw"]
+[ext_resource type="Texture2D" uid="uid://dl1x0lbcv6ujx" path="res://images/guitar_marche_solo-Photoroom.png" id="9_ks6ia"]
+[ext_resource type="PackedScene" uid="uid://dkrri3f8xy67b" path="res://gameOver/game_over_screen.tscn" id="13_c3adj"]
+[ext_resource type="Texture2D" uid="uid://bdb6rkod688ya" path="res://images/souris.png" id="13_wt1ci"]
+[ext_resource type="PackedScene" uid="uid://c3uiujpn6f6lp" path="res://victoire/victoire_screen.tscn" id="14_wygd8"]
+[ext_resource type="AudioStream" uid="uid://bjiwjm0cd0c26" path="res://sounds/080205_life-lost-game-over-89697.mp3" id="15_7oohe"]
+[ext_resource type="Script" uid="uid://cb2qvvvk88ylc" path="res://HealBar/HealthBar.gd" id="16_wt1ci"]
+[ext_resource type="AudioStream" uid="uid://bp8pxw8kfm35e" path="res://sounds/tadaa-47995.mp3" id="17_jdk1o"]
+[ext_resource type="AudioStream" uid="uid://bw8ah1vt75jrd" path="res://sounds/street-carnival-2-68333.mp3" id="19_5kabp"]
+[ext_resource type="AudioStream" uid="uid://brwuegl1uk171" path="res://sounds/Circus music Musique de cirque 马戏团音乐 馬戲團音樂.mp3" id="20_30j3p"]
+[ext_resource type="AudioStream" uid="uid://tfdrr3mync76" path="res://sounds/button-click-289742.mp3" id="21_30j3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmrk6"]
+size = Vector2(1019, 104)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hmrk6"]
+a = Vector2(2, 497)
+b = Vector2(-2, -517)
+
+[sub_resource type="GDScript" id="GDScript_64ilw"]
+script/source = "extends Label
+
+var score = 0
+
+func _ready():
+	text = \"0\"
+
+func spawn_cible():
+	var nouvelle_cible = load(\"res://Cible/Cible.tscn\").instantiate()
+	get_tree().current_scene.add_child(nouvelle_cible) 
+	nouvelle_cible.clicked.connect(_on_cible_clicked)
+
+func _on_cible_clicked():
+	score += 1
+	text = str(score)
+	print(\"Score augmenté !\")
+"
+
+[node name="Scene principale" type="Node2D"]
+script = ExtResource("1_p4fq2")
+target_scene = ExtResource("2_p4fq2")
+ally_scene1 = ExtResource("3_0wmpy")
+ally_scene2 = ExtResource("4_ks6ia")
+ally_scene3 = ExtResource("5_c3adj")
+ally_scene4 = ExtResource("6_gfu4q")
+ally_scene5 = ExtResource("7_oosg4")
+ally_scene6 = ExtResource("8_a4f6t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1025.0
+offset_bottom = 1025.0
+mouse_filter = 2
+texture = ExtResource("1_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(491, 361)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(20, 256)
+shape = SubResource("RectangleShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(19, 35)
+shape = SubResource("RectangleShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="Left Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+position = Vector2(1, 525)
+shape = SubResource("SegmentShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="Right Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+position = Vector2(1025, 520)
+shape = SubResource("SegmentShape2D_hmrk6")
+metadata/_edit_lock_ = true
+
+[node name="BaseAlliée" parent="." instance=ExtResource("4_7n3ce")]
+position = Vector2(54, 501)
+metadata/_edit_lock_ = true
+
+[node name="HealthBarAllie" type="ProgressBar" parent="BaseAlliée"]
+offset_left = -54.0
+offset_top = 66.0
+offset_right = 60.0
+offset_bottom = 93.0
+script = ExtResource("16_wt1ci")
+
+[node name="BaseEnnemie" parent="." instance=ExtResource("5_64ilw")]
+position = Vector2(973, 505)
+metadata/_edit_lock_ = true
+
+[node name="HealthBarEnnemi" type="ProgressBar" parent="BaseEnnemie"]
+offset_left = -48.0
+offset_top = 65.0
+offset_right = 43.0
+offset_bottom = 92.0
+script = ExtResource("16_wt1ci")
+
+[node name="Tambour" type="Button" parent="."]
+offset_left = 98.0
+offset_top = 721.0
+offset_right = 229.0
+offset_bottom = 842.0
+theme_override_font_sizes/font_size = 20
+text = "Cost : 3"
+icon = ExtResource("7_0wmpy")
+
+[node name="Flute" type="Button" parent="."]
+offset_left = 437.0
+offset_top = 725.0
+offset_right = 568.0
+offset_bottom = 844.0
+theme_override_font_sizes/font_size = 20
+text = "Cost : 6"
+icon = ExtResource("8_elwfw")
+
+[node name="Guitard" type="Button" parent="."]
+texture_filter = 1
+offset_left = 759.0
+offset_top = 731.0
+offset_right = 896.0
+offset_bottom = 841.0
+text = "Cost : 9"
+icon = ExtResource("9_ks6ia")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2"]
+texture_filter = 1
+position = Vector2(82.5, 54.4999)
+scale = Vector2(1.82812, 1.42188)
+texture = ExtResource("13_wt1ci")
+
+[node name="Clicks" type="Label" parent="CanvasLayer2"]
+offset_left = 66.0
+offset_top = 44.0
+offset_right = 109.0
+offset_bottom = 67.0
+horizontal_alignment = 2
+script = SubResource("GDScript_64ilw")
+
+[node name="GameOverScreen" parent="." instance=ExtResource("13_c3adj")]
+visible = false
+
+[node name="gameoversound" type="AudioStreamPlayer2D" parent="GameOverScreen"]
+stream = ExtResource("15_7oohe")
+volume_db = 2.621
+
+[node name="Victoryscreen" parent="." instance=ExtResource("14_wygd8")]
+visible = false
+
+[node name="victorysound" type="AudioStreamPlayer2D" parent="Victoryscreen"]
+stream = ExtResource("17_jdk1o")
+volume_db = 6.5
+
+[node name="Spawner" parent="." instance=ExtResource("6_p3iq2")]
+top_level = true
+position = Vector2(483, 31)
+
+[node name="ambiance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_5kabp")
+volume_db = -9.286
+
+[node name="musique" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_30j3p")
+volume_db = -3.714
+
+[node name="boutton" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_30j3p")
+volume_db = 8.214
+
+[node name="Jordan" type="Button" parent="."]
+offset_left = 443.0
+offset_top = 940.0
+offset_right = 496.0
+offset_bottom = 961.0
+theme_override_font_sizes/font_size = 20
+
+[node name="Mohammed" type="Button" parent="."]
+offset_left = 508.0
+offset_top = 945.0
+offset_right = 561.0
+offset_bottom = 966.0
+scale = Vector2(0.854323, 0.483078)
+theme_override_font_sizes/font_size = 20
+
+[node name="Erick" type="Button" parent="."]
+offset_left = 772.0
+offset_top = 900.0
+offset_right = 825.0
+offset_bottom = 921.0
+scale = Vector2(0.650122, 1.24902)
+theme_override_font_sizes/font_size = 20
+
+[connection signal="mouse_entered" from="Tambour" to="." method="_on_tambour_mouse_entered"]
+[connection signal="pressed" from="Tambour" to="." method="_on_tambour_pressed"]
+[connection signal="mouse_entered" from="Flute" to="." method="_on_flute_mouse_entered"]
+[connection signal="pressed" from="Flute" to="." method="_on_flute_pressed"]
+[connection signal="mouse_entered" from="Guitard" to="." method="_on_guitard_mouse_entered"]
+[connection signal="pressed" from="Guitard" to="." method="_on_guitard_pressed"]
+[connection signal="pressed" from="Jordan" to="." method="_on_jordan_pressed"]
+[connection signal="pressed" from="Mohammed" to="." method="_on_mohammed_pressed"]
+[connection signal="pressed" from="Erick" to="." method="_on_erick_pressed"]

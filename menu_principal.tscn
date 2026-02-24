@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcpd21bdug26w"]
+
+[ext_resource type="Script" uid="uid://cixs7el6dhvuj" path="res://menu_principal.gd" id="1_gmcsc"]
+[ext_resource type="Texture2D" uid="uid://dov4gbg4okkcj" path="res://images/menu_principal.png" id="2_gmcsc"]
+[ext_resource type="AudioStream" uid="uid://b3lvt25w1j6bc" path="res://sounds/taratata-6264.mp3" id="3_ul6ys"]
+[ext_resource type="AudioStream" uid="uid://tfdrr3mync76" path="res://sounds/button-click-289742.mp3" id="4_ns3he"]
+
+[sub_resource type="FontFile" id="FontFile_ns3he"]
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bj1uy"]
+font_size = 64
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+
+[node name="menu_principal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gmcsc")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gmcsc")
+expand_mode = 1
+
+[node name="titre" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_top = 191.0
+offset_right = 67.0
+offset_bottom = 214.0
+grow_horizontal = 2
+scale = Vector2(0.998354, 1.05941)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("FontFile_ns3he")
+text = "MENU PRINCIPAL"
+label_settings = SubResource("LabelSettings_bj1uy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -120.0
+offset_right = 215.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="StartBtm" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "START"
+
+[node name="TutorielBtm" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "TUTORIEL"
+
+[node name="QuitterBtm" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "QUITTER"
+
+[node name="musique_ecranp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ul6ys")
+volume_db = 3.714
+
+[node name="boutton" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ns3he")
+volume_db = 12.071
+
+[connection signal="button_down" from="VBoxContainer/StartBtm" to="." method="_on_start_btm_button_down"]
+[connection signal="mouse_entered" from="VBoxContainer/StartBtm" to="." method="_on_start_btm_mouse_entered"]
+[connection signal="button_down" from="VBoxContainer/TutorielBtm" to="." method="_on_tutoriel_btm_button_down"]
+[connection signal="mouse_entered" from="VBoxContainer/TutorielBtm" to="." method="_on_tutoriel_btm_mouse_entered"]
+[connection signal="button_down" from="VBoxContainer/QuitterBtm" to="." method="_on_quitter_btm_button_down"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitterBtm" to="." method="_on_quitter_btm_mouse_entered"]

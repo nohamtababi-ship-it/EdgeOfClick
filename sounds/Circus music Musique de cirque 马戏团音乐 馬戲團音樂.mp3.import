@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brwuegl1uk171"
+path="res://.godot/imported/Circus music Musique de cirque 马戏团音乐 馬戲團音樂.mp3-6b8431092d6d32ce8f036ddbc1c3280b.mp3str"
+
+[deps]
+
+source_file="res://sounds/Circus music Musique de cirque 马戏团音乐 馬戲團音樂.mp3"
+dest_files=["res://.godot/imported/Circus music Musique de cirque 马戏团音乐 馬戲團音樂.mp3-6b8431092d6d32ce8f036ddbc1c3280b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

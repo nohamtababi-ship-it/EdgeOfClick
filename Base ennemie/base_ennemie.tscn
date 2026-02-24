@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4iy7qa7p20ga"]
+
+[ext_resource type="Script" uid="uid://ckvfhv8kmpvyx" path="res://Base ennemie/base_ennemie.gd" id="1_ue8qb"]
+[ext_resource type="Script" uid="uid://dp3bs67ocbu3h" path="res://health.gd" id="2_wi2uh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wj566"]
+radius = 62.0322
+
+[node name="BaseEnnemie" type="StaticBody2D" groups=["Ennemi"]]
+position = Vector2(436, 241)
+input_pickable = true
+script = ExtResource("1_ue8qb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wj566")
+
+[node name="Health" type="Node" parent="." groups=["Ennemi"]]
+script = ExtResource("2_wi2uh")
+metadata/_custom_type_script = "uid://dp3bs67ocbu3h"

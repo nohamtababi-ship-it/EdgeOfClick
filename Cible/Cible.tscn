@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbhjvdjkbrguw"]
+
+[ext_resource type="Texture2D" uid="uid://c6vwuad1ldpvv" path="res://images/cibleaseprite.png" id="1_1pn2j"]
+[ext_resource type="Script" uid="uid://ce7p3e3wxw2kx" path="res://Cible/Cible.gd" id="1_7rrqh"]
+[ext_resource type="AudioStream" uid="uid://dcnu8c5dqgfn3" path="res://sounds/balloon-pop-48030.mp3" id="3_qn0qw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7rrqh"]
+radius = 34.1321
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(-53, -99)
+script = ExtResource("1_7rrqh")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(54, 58.5)
+scale = Vector2(4.375, 4.65625)
+texture = ExtResource("1_1pn2j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(54, 99)
+shape = SubResource("CircleShape2D_7rrqh")
+
+[node name="pop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qn0qw")
+volume_db = 24.0

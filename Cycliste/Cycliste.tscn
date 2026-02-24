@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://baot6eajl1eda"]
+
+[ext_resource type="Texture2D" uid="uid://dmuuf16i3ty34" path="res://images/velo_marche1.png" id="1_4f23i"]
+[ext_resource type="Script" uid="uid://cf02m4jhd4lu8" path="res://Cycliste/cycliste.gd" id="1_bdb8p"]
+[ext_resource type="Texture2D" uid="uid://dqb0mx5ckem87" path="res://images/velo_attaque1.png" id="2_vmlw3"]
+[ext_resource type="Texture2D" uid="uid://bdhndaj3kdv62" path="res://images/velo_attaque2.png" id="3_bdb8p"]
+[ext_resource type="Texture2D" uid="uid://cwnyop5xmrd4f" path="res://images/velo_marche2.png" id="4_mul20"]
+[ext_resource type="PackedScene" uid="uid://bvke2npngfgs0" path="res://health.tscn" id="6_bdb8p"]
+[ext_resource type="AudioStream" uid="uid://0kukmloimy3e" path="res://sounds/bike-bell-40094.mp3" id="7_mul20"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bp5ds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4f23i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vmlw3")
+}, {
+"duration": 1.3,
+"texture": ExtResource("3_bdb8p")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4f23i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4f23i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mul20")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mg6ev"]
+height = 56.0
+
+[node name="Cycliste" type="CharacterBody2D" groups=["Ennemi", "distance"]]
+script = ExtResource("1_bdb8p")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bp5ds")
+animation = &"attacking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_mg6ev")
+
+[node name="Health" parent="." instance=ExtResource("6_bdb8p")]
+
+[node name="cyclistesound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_mul20")
+volume_db = 7.429

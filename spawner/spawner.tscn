@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://8438nu7xqcgr"]
+
+[ext_resource type="Script" uid="uid://cfdw35lpjkjiv" path="res://spawner/spawner.gd" id="1_mcln3"]
+[ext_resource type="PackedScene" uid="uid://bc0dbfho1208s" path="res://Diablotin/diablotin.tscn" id="2_bphdf"]
+[ext_resource type="PackedScene" uid="uid://3lu15edxkdc" path="res://Clown/Clown_Ennemy.tscn" id="3_7ocbr"]
+[ext_resource type="PackedScene" uid="uid://baot6eajl1eda" path="res://Cycliste/Cycliste.tscn" id="4_7bwf7"]
+[ext_resource type="PackedScene" uid="uid://cxmj0p8ei5esk" path="res://BigBoss/BigBoss.tscn" id="4_ymvw8"]
+[ext_resource type="PackedScene" uid="uid://buy76bdeeeubx" path="res://Cracheur de feu/CracheurFeu.tscn" id="5_63gfi"]
+[ext_resource type="Script" uid="uid://b7aa7egodjis" path="res://spawner/progress_bar.gd" id="7_63gfi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_63gfi"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_mcln3")
+clown_scene = ExtResource("3_7ocbr")
+diablotin_scene = ExtResource("2_bphdf")
+cycliste_scene = ExtResource("4_7bwf7")
+cracheur_de_feu_scene = ExtResource("5_63gfi")
+big_boss_scene = ExtResource("4_ymvw8")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -46.0
+offset_top = -13.0
+offset_right = 49.0
+offset_bottom = 14.0
+show_percentage = false
+script = ExtResource("7_63gfi")
+
+[node name="Wavee" type="Label" parent="."]
+offset_left = -28.0
+offset_top = -13.0
+offset_right = 47.0
+offset_bottom = 10.0
+text = "Manche : "
+label_settings = SubResource("LabelSettings_63gfi")
